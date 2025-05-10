@@ -2,12 +2,14 @@
  * @target MZ
  * @plugindesc Lets you customize the X and Y position of the choice list window (Window_ChoiceList) in RPG Maker MZ.
  * @author SekiShiyo
- *
+ * @url https://github.com/SekiShiyo/RMMZ/edit/main/ChoiceBoxPosition.js
+ * 
+ * 
  * @param ChoiceX
  * @text Choice Window X
  * @desc X position of the choice window
  * @default 240
- *
+ * 
  * @param ChoiceY
  * @text Choice Window Y
  * @desc Y position of the choice window
