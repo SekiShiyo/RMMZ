@@ -1,27 +1,27 @@
 /*:
  * @target     MZ
- * @plugindesc v1.0 自定义点击状态鼠标指针（点击检测） 
+ * @plugindesc v1.0 Custom mouse pointer that switches image on click. 
  * @author SekiShiyo
  * @url https://github.com/SekiShiyo/RMMZ/blob/main/MousePointer
  * 
  * @param defaultCursor
- * @text 默认光标图片
+ * @text Default Cursor Image
  * @type file
  * @dir img/system
- * @desc 默认状态下显示的光标图像（不含扩展名）
+ * @desc The image shown as the default mouse cursor 
  *
  * @param clickCursor
- * @text 点击时光标图片
+ * @text Clicked Cursor Image
  * @type file
  * @dir img/system
- * @desc 鼠标点击时显示的光标图像（不含扩展名）
+ * @desc The image shown when the mouse is pressed or clicked
  *
  * @help
- * - 将两张图放入 img/system 文件夹；
- * - 默认使用 defaultCursor 图像；
- * - 鼠标按下时切换为 clickCursor 图像；
- * - 自动适配 MZ 场景；
- * - 不使用 PIXI Sprite，不会被遮挡。
+ * This plugin replaces the default system cursor with a custom image.
+ * It also switches to another image when the mouse is pressed.
+ * Works across all scenes and avoids using PIXI sprites to prevent rendering issues.
+ * Free for commercial and non-commercial use. Attribution optional but appreciated.
+ * Authored by SekiShiyo.
  */
 
 (() => {
