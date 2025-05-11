@@ -5,10 +5,8 @@ All plugins are lightweight, easy to use, and tested in production-ready project
 
 ## ✨ Features
 
-- 💬 **Custom Choice Backgrounds**: Use images or colors to style your dialogue choice windows.
-- 🪟 **Transparent or Solid Windows**: Control window opacity with simple parameters.
-- 🎨 **Font Customization**: Change default font, remove outlines, and tweak text styling.
-- 📦 Plug-and-play: No scripting knowledge needed — just drop into your plugin folder and activate.
+- Basically I just want to share some UI things which is all I care..
+- but, useful and hard to find online.
 
 ## 📂 Installation
 
