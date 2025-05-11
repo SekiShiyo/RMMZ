@@ -2,7 +2,7 @@
  * @target     MZ
  * @plugindesc v1.0 自定义点击状态鼠标指针（点击检测） 
  * @author SekiShiyo
- * 
+ * @url https://github.com/SekiShiyo/RMMZ/blob/main/MousePointer
  * 
  * @param defaultCursor
  * @text 默认光标图片
