@@ -26,7 +26,8 @@ All plugins are lightweight, easy to use, and tested in production-ready project
 |---------------------|------------------------------------------------|
 | NonSelectedChoiceBG | Set non-selected choice items to a custom background color |
 | MousePointer | Custom mouse pointer that switches image on click |
-| ChoiceBoxPosition | customize the X and Y position of the choice list window |
+| ChoiceBoxPosition | Customize the X and Y position of the choice list window |
+| InteractionSystem | Add immersive behavior like Sit, lie and swim |
 
 
 
