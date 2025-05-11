@@ -36,7 +36,7 @@ No plugins required — all logic is event-based and easy to install.
 
 | Sit / Lie / Swim |
 |------------------|
-| |
+| InteractionSystem/copy_58CF73E1-00F6-4CD0-8F0A-810623F1E16F.GIF|
 
 ---
 
