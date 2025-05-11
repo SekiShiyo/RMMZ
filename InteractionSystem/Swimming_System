@@ -1,0 +1,15 @@
+let region = $gameMap.regionId($gamePlayer.x, $gamePlayer.y);
+
+if (region === 1) {
+  if ($gameVariables.value(1) !== 1) {
+    $gamePlayer.setImage("Swim_Sprites", 0);  // Replaced by swimming sprites
+    $gamePlayer.setMoveSpeed(4);
+    $gameVariables.setValue(1, 1);
+  }
+} else {
+  if ($gameVariables.value(1) !== 0) {
+    $gamePlayer.setImage("Actor1", 0);  // Replaced by your character walking sprites
+    $gamePlayer.setMoveSpeed(5);
+    $gameVariables.setValue(1, 0);
+  }
+}
