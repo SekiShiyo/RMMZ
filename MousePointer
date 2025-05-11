@@ -1,0 +1,56 @@
+/*:
+ * @target     MZ
+ * @plugindesc v1.0 自定义点击状态鼠标指针（点击检测） 
+ * @author SekiShiyo
+ * 
+ * 
+ * @param defaultCursor
+ * @text 默认光标图片
+ * @type file
+ * @dir img/system
+ * @desc 默认状态下显示的光标图像（不含扩展名）
+ *
+ * @param clickCursor
+ * @text 点击时光标图片
+ * @type file
+ * @dir img/system
+ * @desc 鼠标点击时显示的光标图像（不含扩展名）
+ *
+ * @help
+ * - 将两张图放入 img/system 文件夹；
+ * - 默认使用 defaultCursor 图像；
+ * - 鼠标按下时切换为 clickCursor 图像；
+ * - 自动适配 MZ 场景；
+ * - 不使用 PIXI Sprite，不会被遮挡。
+ */
+
+(() => {
+    const params = PluginManager.parameters("MousePointer") || {};
+    const defaultCursor = params["defaultCursor"] || "Cursor1";
+    const clickCursor = params["clickCursor"] || "Cursor2";
+
+    let isPressed = false;
+
+    // 设置光标图像（使用 CSS）
+    function updateCursorImage(imageName) {
+        const url = `url("img/system/${imageName}.png"), auto`;
+        document.body.style.cursor = url;
+    }
+
+    // 初始设置
+    window.addEventListener("load", () => {
+        updateCursorImage(defaultCursor);
+    });
+
+    // 在每帧检测按压状态
+    const _SceneManager_updateMain = SceneManager.updateMain;
+    SceneManager.updateMain = function() {
+        _SceneManager_updateMain.call(this);
+
+        const nowPressed = TouchInput.isPressed();
+        if (nowPressed !== isPressed) {
+            isPressed = nowPressed;
+            updateCursorImage(isPressed ? clickCursor : defaultCursor);
+        }
+    };
+})();
