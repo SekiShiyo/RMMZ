@@ -35,7 +35,7 @@ All plugins are lightweight, easy to use, and tested in production-ready project
 
 ## 📷 Screenshots
 
-_✨ Coming soon._
+_✨ See the folder._
 
 ## 📃 License
 
