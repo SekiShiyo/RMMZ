@@ -25,6 +25,10 @@ All plugins are lightweight, easy to use, and tested in production-ready project
 | Plugin Name         | Description                                    |
 |---------------------|------------------------------------------------|
 | NonSelectedChoiceBG | Set non-selected choice items to a custom background color |
+| MousePointer | Custom mouse pointer that switches image on click |
+| ChoiceBoxPosition | customize the X and Y position of the choice list window |
+
+
 
 > More plugins coming soon!
 
