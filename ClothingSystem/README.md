@@ -1,82 +1,86 @@
-# Simple Wardrobe Plugin for RPG Maker MZ  
-**By SekiShiyo**
+# ClothingSystem Plugin Suite for RPG Maker MZ
 
-A lightweight, native Window-based outfit‐changing system for RPG Maker MZ.  
-Supports any number of single‐character 3×4 spritesheets (with `$` prefix) and previews a selected cell in the wardrobe list.
+This project offers **two versions** of the ClothingSystem plugin:
 
----
-
-## 📌 Features
-
-- **Outfit List**: Define as many garments as you like via plugin parameters.  
-- **Live Preview**: Shows a 48×48 cell preview (1–9) from each spritesheet.  
-- **Persistent Change**: The player’s character graphic updates immediately and persists across map transfers.  
-- **Native UI**: Uses a custom `Window_Selectable` wardrobe interface—no extra UI plugins required.
+1. **Basic Version** (`SimpleWardrobe.js`) - Outfit selection and persistent sprite swapping.
+2. **Extended Version** (`Change_Cloth_with_Face_and_action.js`) - Includes all Basic features, **plus** dynamic dialogue face swapping.
 
 ---
 
-## ⚙️ Installation
+## 1. Basic Version: SimpleWardrobe.js
 
-1. **Place the .js file**  
-   Copy `SimpleWardrobe.js` into your project’s `js/plugins/` folder.  
+### Features
 
-2. **Enable the plugin**  
-   In the Plugin Manager, add “Simple Wardrobe” and make sure it’s turned ON.
+* **Native Window UI**: Displays a wardrobe list with 48×48 previews from a 3×4 character sprite.
+* **Persistent Outfit**: Selected outfit persists across map transfers, saves, and loads.
 
-3. **Configure outfits**  
-   - Open the plugin’s parameters.  
-   - Click **Add** to create entries in **Clothes**.  
-   - For each entry:  
-     - **Name**: the display text (e.g. “Casual Wear”).  
-     - **ImageName**: the filename of your 3×4 single‐character spritesheet (include the `$` prefix, e.g. `$Casual_A`).  
-     - **PreviewCell**: a number 1–12 indicating which cell (3 columns × 4 rows) to show in the list preview.
+### Installation
 
-4. **Prepare your sprite files**  
-   Place your `.png` sheets under `img/characters/`. Filenames must include `$` and follow your chosen naming convention.
+1. Copy `SimpleWardrobe.js` into your project's `js/plugins/` folder.
+2. Open the Plugin Manager and enable **SimpleWardrobe**.
 
----
+### Parameters (`clothes`)
 
-## 🚪 Usage
+An array of outfit entries:
 
-- **Open the Wardrobe**  
-  Call the plugin command **OpenWardrobe** (via event “Plugin Command → Simple Wardrobe → OpenWardrobe”) to display the outfit selection window.
+| Field         | Type   | Example   | Description                                       |
+| ------------- | ------ | --------- | ------------------------------------------------- |
+| `name`        | text   | `Casual`  | Label shown in the wardrobe list.                 |
+| `imageName`   | text   | `$Casual` | Filename in `img/characters` (include `$`).       |
+| `previewCell` | number | `2`       | Which 48×48 cell (1–12) to preview (top-left 3×4). |
 
-- **Select & Apply**  
-  - Navigate the list with Arrow keys.  
-  - Press **OK** to equip the highlighted outfit and close the scene.  
-  - Press **Cancel** to exit without changes.
+### Usage
 
----
+1. Create a map event and add the Plugin Command:
 
-## 🧩 Plugin Commands
-
-| Command       | Description                            |
-|---------------|----------------------------------------|
-| OpenWardrobe  | Opens the wardrobe selection window.   |
+   ```
+   Plugin: SimpleWardrobe
+   Command: OpenWardrobe
+   ```
+2. During play, trigger the event to open the wardrobe, select an outfit, and the player sprite updates immediately.
 
 ---
 
-## 🔧 Technical Notes
+## 2. Extended Version: Change_Cloth_with_Face_and_action.js
 
-- **Character Refresh Hook**  
-  Overrides `Game_Player.refresh()` to re‐apply the last chosen spritesheet on map load.  
-- **Persistent Storage**  
-  Stores the active outfit in `$gameSystem._clothingName` so it keeps applied across scenes and saves.  
-- **Preview Loading**  
-  Automatically preloads each character sheet so the preview grid is fully rendered on first open.
+### Additional Features
+
+* **Dialogue Face Swapping**: Automatically replace the Show Text face image for a specified speaker name when wearing an outfit.
+
+### Installation
+
+1. Copy `Change_Cloth_with_Face_and_action.js` into `js/plugins/`.
+2. Enable **Change_Cloth_with_Face_and_action** in the Plugin Manager.
+
+### Parameters (`clothes`)
+
+An array of entries combining outfit and face mapping:
+
+| Field         | Type   | Example      | Description                                                         |
+| ------------- | ------ | ------------ | ------------------------------------------------------------------- |
+| `name`        | text   | `Casual`     | Label shown in the wardrobe list.                                   |
+| `imageName`   | text   | `$Casual`    | Character sprite filename in `img/characters` (include `$`).        |
+| `previewCell` | number | `2`          | Preview cell index (1–12) from the top-left 3×4 of the sprite.       |
+| `actorName`   | text   | `Hero`       | Show Text → Name field to match for face swapping.                  |
+| `faceName`    | text   | `CasualFace` | Filename in `img/faces` (no extension) to use as the dialogue face. |
+| `faceIndex`   | number | `0`          | (Optional) Cell index in a 4×N face sheet; default `0`.             |
+
+### Usage
+
+1. Place a map event and add the Plugin Command:
+
+   ```
+   Plugin: Change_Cloth_with_Face_and_action
+   Command: OpenWardrobe
+   ```
+2. In your Show Text commands for the specified `actorName`, the face image will automatically switch to the `faceName`/`faceIndex` configured for the current outfit.
 
 ---
 
-## 🎨 Example Configuration
+## Notes
 
-| Name         | ImageName      | PreviewCell |
-|--------------|----------------|-------------|
-| Casual Wear  | `$Casual_A`    | 5           |
-| Uniform      | `$Uniform_A`   | 1           |
-| Swim Suit    | `$Swimsuit_A`  | 3           |
+* You can enable **both** versions side by side, but typically you would only use one.
+* The Basic and Extended versions **share** the same `clothes` parameter structure, but Extended packs extra fields (`actorName`, `faceName`, `faceIndex`).
+* Make sure your filenames and actor names match exactly (case-sensitive) in the Plugin Manager.
 
----
-
-## 📄 License
-
-MIT License — free for personal and commercial use. Attribution appreciated.  
+Enjoy seamless outfit and dialogue face customization! Feel free to rename the plugin files if needed to avoid conflicts.
