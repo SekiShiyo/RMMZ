@@ -1,8 +1,8 @@
 /*:
  * @target MZ
- * @plugindesc Speaker-based message and name window background color v1.6 (no flash, preserves skin) by SekiShiyo
+ * @plugindesc Speaker-based message and name box and name box background color v1.7 (no flash, preserves skin) by SekiShiyo
  * @author SekiShiyo
- *
+ * @url https://github.com/SekiShiyo/RMMZ/edit/main/DialogueTint/DialogueTint.js
  * @param SpeakerColors
  * @text Speaker Color Config
  * @type struct<ColorConfig>[]
@@ -32,7 +32,7 @@
  */
 
 (() => {
-    const pluginName = "DialogueTint";
+    const pluginName = "SpeakerWindowColor";
     const params = PluginManager.parameters(pluginName);
   
     const colorConfigs = JSON.parse(params["SpeakerColors"] || "[]").map(str => {
@@ -105,4 +105,30 @@
         this.contentsBack.clear(); // 💡 prevent flashing system white bg
       }
     };
+    // ✅ Choice list background color + remove item highlight
+const _Window_ChoiceList_start = Window_ChoiceList.prototype.start;
+Window_ChoiceList.prototype.start = function () {
+  _Window_ChoiceList_start.call(this);
+
+  const name = $gameMessage.speakerName();
+  const match = colorConfigs.find(cfg => cfg.name === name);
+  const color = match ? parseCssColor(match.color) : parseCssColor(defaultColor);
+
+  // ✅ choice background color
+  if (!this._customChoiceBg) {
+    this._customChoiceBg = new Sprite(new Bitmap(this.width, this.height));
+    this._customChoiceBg.z = -1;
+    this.addChildToBack(this._customChoiceBg);
+  }
+
+  const bmp = this._customChoiceBg.bitmap;
+  bmp.resize(this.width, this.height);
+  bmp.clear();
+  bmp.fillRect(0, 0, this.width, this.height, color);
+};
+
+// ✅ choice original color removed
+Window_ChoiceList.prototype.drawItemBackground = function(index) {
+  
+};
   })();
