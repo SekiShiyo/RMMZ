@@ -1,67 +1,108 @@
-# DialogueTint Plugin v1.6 (RPG Maker MZ)
+# DialogueTint Plugin v1.7 (RPG Maker MZ)
+Author: SekiShiyo
 
-This RPG Maker MZ plugin changes the background color of the **message window** and **name box** based on the speaker's name.
 
----
+This RPG Maker MZ plugin changes the background color of the **message window** and **name box** and **choices box** based on the speaker's name.
 
-## ✨ Features
 
-- ✅ Change background color based on speaker name.
-- ✅ Automatically hides name box background if no name is provided.
-- ✅ **No white flash** when switching lines or closing the name box.
-- ✅ Fully **preserves the default window skin** (`Window.png`) and its border style.
-- ✅ Supports **semi-transparent RGBA** values.
+⸻
 
----
+✨ Features
 
-## 📥 Installation
+🎨 Automatically changes the background color of:
+	•	Message Window
+	•	Name Box
+	•	Choice Box
 
-1. Download `DialogueTint_v1.6.js`.
-2. Place it in your project's `js/plugins/` folder.
-3. Open the Plugin Manager and enable **DialogueTint_v1.6**.
-4. Configure the speaker-color mapping in the plugin parameters.
+🧠 Based on the speaker name set in the “Show Text” event command.
 
----
+✅ Stable and safe:
+	•	No white flash or residual artifacts
+	•	Fully compatible with default window skins and borders
+	•	Works across maps and multi-event chains
+	•	Supports custom RGBA color formats with or without decimal transparency
 
-## 🔧 Plugin Parameters
+⸻
 
-### SpeakerColors
+🔧 Plugin Parameters
 
-List of speaker configurations. Each entry includes:
+Parameter	Type	Description
+SpeakerColors	Array of Speaker + RGBA	Set a background color for each speaker name
+DefaultColor	RGBA string	Fallback color if no speaker name matches
 
-- `name`: The exact name used in the "Name" field of the Show Text command.
-- `color`: The background color in RGBA format, e.g., `rgba(255,0,0,0.4)`.
 
-### DefaultColor
+⸻
 
-Color to use when no matching speaker name is found. Supports RGBA.
+🎨 Color Format
+	•	Accepts both:
+	•	rgba(100,100,255,0.4) ← standard CSS
+	•	rgba(255,100,100,180) ← alpha over 1 will auto-convert to 0~1
 
----
+⸻
 
-## 🧪 Example
+📦 Example Configuration
 
-If you configure:
-```json
 [
-  { "name": "Rei", "color": "rgba(100,100,255,0.5)" },
-  { "name": "Asuka", "color": "rgba(255,100,100,180)" }
+  { "name": "绫波丽", "color": "rgba(100,100,255,180)" },
+  { "name": "明日香", "color": "rgba(255,100,100,180)" },
+  { "name": "渚薰",   "color": "rgba(180,180,255,160)" }
 ]
-```
 
-Then when you use the "Show Text" command and set "Name" to `Rei`, the name window background will use a semi-transparent blue. If no name is set, the name box will be hidden.
+Speaker names must exactly match what’s entered in the “Name” field of Show Text commands.
 
----
+⸻
 
-## 🧠 Notes
+🧪 What This Plugin Does
 
-- This plugin works with **all default and custom window skins**.
-- It ensures compatibility by cleaning the system `contentsBack` layer to prevent the flash.
-- You can combine this with other UI plugins if needed.
+Window Type	Behavior
+Message	Background color changes based on speaker
+NameBox	Color synced with speaker, auto-hides when speaker name is empty
+ChoiceList	Background color matches current speaker, item highlight removed
 
----
 
-## 🧑‍💻 Author
+⸻
 
-Plugin by **SekiShiyo**
+🆕 v1.6 Update Notes
 
-MIT License | RPG Maker MZ Plugin
+New in this version:
+
+✅ Added support for Choice Window:
+	•	Matches background color with speaker name
+	•	Removes the default highlight background from each choice option
+	•	Keeps selected item visible via default skin border or custom underline
+
+✅ Enhanced Name Window stability:
+	•	No longer leaves residual background when name changes
+	•	No visual glitch when switching maps rapidly
+
+⸻
+
+🗂 Use Case Example
+
+Event Command → Show Text
+
+Name: 绫波丽
+Text: “欢迎回来。”
+
+✅ The message window, name window, and following choice window will all use 绫波丽’s configured background color.
+
+⸻
+
+🔌 Installation
+	1.	Place SpeakerWindowColor.js in your project’s /js/plugins/ folder
+	2.	Enable it in Plugin Manager
+	3.	Configure parameters in the UI
+
+⸻
+
+📎 Compatibility
+	•	Designed for RPG Maker MZ
+	•	Fully compatible with other message-enhancing plugins (as long as they don’t overwrite Window_Message, Window_NameBox, or Window_ChoiceList)
+
+⸻
+
+📮 Credits
+	•	Plugin by @SekiShiyo
+	•	Special thanks to players testing EVA-themed emotional RPG scenarios 💙
+
+⸻
