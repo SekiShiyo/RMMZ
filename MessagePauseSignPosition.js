@@ -2,7 +2,7 @@
  * @target MZ
  * @plugindesc Adjusts the position of the message pause sign (the down arrow).
  * @author SekiShiyo
- * @url https://github.com/SekiShiyo/RMMZ/new/main/MessagePauseSignPosition.js
+ * @url https://github.com/SekiShiyo/RMMZ/blob/main/MessagePauseSignPosition.js
  * 
  * @param xOffset
  * @text X Offset
